@@ -59,39 +59,51 @@ import socket
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 host = '127.0.0.1'
+
 port = 12345
+
 server_socket.bind((host, port))
 
 server_socket.listen(1)
+
 print("Server is waiting for connection...")
 
 conn, addr = server_socket.accept()
+
 print("Connected to:", addr)
 
 data = conn.recv(1024).decode()
+
 print("Client says:", data)
 
 message = "Hello Client, message received!"
+
 conn.send(message.encode())
 
 conn.close()
+
 server_socket.close()
 
 <img width="1119" height="255" alt="Screenshot 2026-03-11 111101" src="https://github.com/user-attachments/assets/b9d82fc1-d9b8-4966-bb58-fe2a1a52a7ab" />
 
 ##client program
+
 import socket
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 host = '127.0.0.1'
+
 port = 12345
+
 client_socket.connect((host, port))
 
 message = "Hello Server!"
+
 client_socket.send(message.encode())
 
 data = client_socket.recv(1024).decode()
+
 print("Server says:", data)
 
 client_socket.close()
