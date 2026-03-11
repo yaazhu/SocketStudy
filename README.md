@@ -56,31 +56,24 @@ Socket programming finds applications in various domains, including web developm
 ##Server program
 import socket
 
-# Create socket
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Bind socket to IP and port
 host = '127.0.0.1'
 port = 12345
 server_socket.bind((host, port))
 
-# Listen for connections
 server_socket.listen(1)
 print("Server is waiting for connection...")
 
-# Accept client connection
 conn, addr = server_socket.accept()
 print("Connected to:", addr)
 
-# Receive data from client
 data = conn.recv(1024).decode()
 print("Client says:", data)
 
-# Send response to client
 message = "Hello Client, message received!"
 conn.send(message.encode())
 
-# Close connection
 conn.close()
 server_socket.close()
 
@@ -89,23 +82,18 @@ server_socket.close()
 ##client program
 import socket
 
-# Create socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Connect to server
 host = '127.0.0.1'
 port = 12345
 client_socket.connect((host, port))
 
-# Send message to server
 message = "Hello Server!"
 client_socket.send(message.encode())
 
-# Receive response from server
 data = client_socket.recv(1024).decode()
 print("Server says:", data)
 
-# Close socket
 client_socket.close()
 
 <img width="1061" height="240" alt="Screenshot 2026-03-11 111203" src="https://github.com/user-attachments/assets/dae07bf2-f542-4b9f-91e9-642f13848a60" />
